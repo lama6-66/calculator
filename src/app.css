@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 button{
-    @apply bg-[#d6dcef] rounded-full h-12 w-12 ;
+    @apply bg-[#d6dcef] rounded-full h-12 w-12 text-2xl shadow-md  ;
 }
