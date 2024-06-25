@@ -7,30 +7,59 @@ function Equation( value :string){
 }
 
 function space(){
-    equation=equation.substring(0, equation.length-1);
-    if(equation.charAt(equation.length - 1)==' * '){
+    switch(equation.substring(equation.length-3, equation.length)){
+        case " + ":
+        case " * ":
+        case " - ":
+        case " / ":
         equation=equation.substring(0, equation.length-3);
-    }else{
+        break;
+        default:
         equation=equation.substring(0, equation.length-1);
     }
 
 
 
+   /* equation=equation.substring(0, equation.length-1);
+    if(equation.charAt(equation.length - 1)==' * '){
+        equation=equation.substring(0, equation.length-1);
+    }else{
+        equation=equation.substring(0, equation.length-1);
+    }
+
+*/
+
 }
 
 function clear(){
+    
     equation="";
 }
 
 function solve(){
-    equation =eval(equation);
+
+
+    try{
+
+   let answer  =eval(equation);
+   if(answer == undefined) throw SyntaxError;
+    }catch  (error){
+        alert('error');
+    }
+
+}
+ 
+function onkeyDown(e: KeyboardEvent) {
+document.getElementById(e.key)?.click();
+
 
 }
 
 
 
-
 </script>
+
+<svelte:window on:keydown|preventDefault={onkeyDown} />
 
 
 
@@ -39,7 +68,7 @@ function solve(){
 {equation}
 </div>
 
-<button on:click={() => Equation(' / 100')} class="bg-blue-500 hover:bg-blue-600  "> 
+<button id="%" on:click={() => Equation(' / 100')} class="bg-blue-500 hover:bg-blue-600  "> 
     <svg xmlns="http://www.w3.org/2000/svg"
      width="1em" height="1em" viewBox="0 0 24 24">
      <path fill="none" stroke="currentColor" stroke-linecap="round" 
@@ -49,7 +78,7 @@ function solve(){
 
 
 </button>
-<button on:click={space} class="bg-yellow-400 flex items-center justify-center hover:bg-yellow-500 "> 
+<button id="CE"  on:click={space} class="bg-yellow-400 flex items-center justify-center hover:bg-yellow-500 "> 
     <svg xmlns="http://www.w3.org/2000/svg"
       class="w-8 h-8"
     width="1em" height="1em" viewBox="0 0 24 24">
@@ -59,7 +88,7 @@ function solve(){
 </svg>
 
 </button>
-<button on:click={() => Equation('**')} class="bg-red-500 hover:bg-red-600 flex items-center justify-center "> 
+<button id="^" on:click={() => Equation('**')} class="bg-red-500 hover:bg-red-600 flex items-center justify-center "> 
     <svg xmlns="http://www.w3.org/2000/svg"
     class="w-6 h-6"
      width="1em" height="1em" viewBox="0 0 24 24">
@@ -71,11 +100,11 @@ function solve(){
 
 
 </button>
-<button on:click={clear} class=" bg-orange-400 text-2xl hover:bg-orange-500"> C </button>
-<button on:click={() => Equation('7')} class="hover:bg-slate-400"> 7 </button>
-<button on:click={() => Equation('8')} class="hover:bg-slate-400" > 8 </button>
-<button on:click={() => Equation('9')} class="hover:bg-slate-400"> 9 </button>
-<button on:click={() => Equation(' - ')} class="bg-green-700 text-1xl hover:bg-green-800  "> 
+<button id="C" on:click={clear} class=" bg-orange-400 text-2xl hover:bg-orange-500"> C </button>
+<button id="7" on:click={() => Equation('7')} class="hover:bg-slate-400"> 7 </button>
+<button id="8" on:click={() => Equation('8')} class="hover:bg-slate-400" > 8 </button>
+<button id="9" on:click={() => Equation('9')} class="hover:bg-slate-400"> 9 </button>
+<button id="-" on:click={() => Equation(' - ')} class="bg-green-700 text-1xl hover:bg-green-800  "> 
     <svg xmlns="http://www.w3.org/2000/svg" 
     class="w-4"
     width="1em" height="1em" viewBox="0 0 512 512">
@@ -85,10 +114,10 @@ function solve(){
 
 
 </button>
-<button on:click={() => Equation('4')} class="hover:bg-slate-400"> 4 </button>
-<button on:click={() => Equation('5')} class="hover:bg-slate-400"> 5 </button>
-<button on:click={() => Equation('6')} class="hover:bg-slate-400"> 6 </button>
-<button on:click={() => Equation(' / ')} class="bg-sky-500 text-3xl hover:bg-sky-600"> 
+<button id="4" on:click={() => Equation('4')} class="hover:bg-slate-400"> 4 </button>
+<button id="5" on:click={() => Equation('5')} class="hover:bg-slate-400"> 5 </button>
+<button id="6" on:click={() => Equation('6')} class="hover:bg-slate-400"> 6 </button>
+<button id="/" on:click={() => Equation(' / ')} class="bg-sky-500 text-3xl hover:bg-sky-600"> 
     <svg xmlns="http://www.w3.org/2000/svg" 
     width="1em" height="1em" viewBox="0 0 24 24">
     <g fill="none" stroke="currentColor" stroke-linejoin="round">
@@ -97,10 +126,10 @@ function solve(){
 
 
 </button>
-<button on:click={() => Equation('1')} class="hover:bg-slate-400"> 1 </button>
-<button on:click={() => Equation('2')} class="hover:bg-slate-400"> 2 </button>
-<button on:click={() => Equation('3')} class="hover:bg-slate-400"> 3 </button>
-<button on:click={() => Equation(' * ')} class="bg-pink-600 text-3xl hover:bg-pink-700"> 
+<button id="1" on:click={() => Equation('1')} class="hover:bg-slate-400"> 1 </button>
+<button id="2" on:click={() => Equation('2')} class="hover:bg-slate-400"> 2 </button>
+<button id="3" on:click={() => Equation('3')} class="hover:bg-slate-400"> 3 </button>
+<button id="*" on:click={() => Equation(' * ')} class="bg-pink-600 text-3xl hover:bg-pink-700"> 
     <svg xmlns="http://www.w3.org/2000/svg" 
     width="1em" height="1em" viewBox="0 0 24 24">
     <path fill="none" stroke="currentColor" stroke-linecap="round" 
@@ -111,10 +140,10 @@ function solve(){
 
 
 </button>
-<button on:click={( ) =>Equation(".") } class="hover:bg-slate-400"> . </button>
-<button on:click={() => Equation('0')} class="hover:bg-slate-400"> 0 </button>
-<button on:click={() => solve()} class="hover:bg-slate-400"> =  </button>
-<button on:click={() => Equation(' + ')} class="bg-violet-500 text-2xl hover:bg-violet-600"> 
+<button id="." on:click={( ) =>Equation(".") } class="hover:bg-slate-400"> . </button>
+<button id="0" on:click={() => Equation('0')} class="hover:bg-slate-400"> 0 </button>
+<button id="=" on:click={() => solve()} class="hover:bg-slate-400"> =  </button>
+<button id="+" on:click={() => Equation(' + ')} class="bg-violet-500 text-2xl hover:bg-violet-600"> 
     <svg xmlns="http://www.w3.org/2000/svg" 
     width="1em" height="1em" viewBox="0 0 2048 2048">
     <path fill="currentColor" d="M1920 896v128h-896v896H896v-896H0V896h896V0h128v896z"/>
