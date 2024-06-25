@@ -47,6 +47,7 @@ function solve(){
 
    let answer  =eval(equation);
    if(answer == undefined) throw SyntaxError;
+   equation=answer;
     }catch  (error){
         alert('error');
     }
