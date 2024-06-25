@@ -1,4 +1,8 @@
+
 <script lang="ts">
+    
+    import { onMount } from "svelte";
+
 
 let equation: string="";
 
@@ -50,11 +54,27 @@ function solve(){
 }
  
 function onkeyDown(e: KeyboardEvent) {
-document.getElementById(e.key)?.click();
-
-
+    let button =document.getElementById(e.key);
+    button?.click();
+    button?.focus();
+   /* setTimeout(() =>{
+        document.activeElement?.blur();
+    }, 100);
+    */
 }
 
+
+
+
+onMount(()=>{
+let allButtons= document.getElementsByTagName('button');
+
+for(let i=0;i<allButtons.length;i++){
+    allButtons[i].addEventListener('click',() => {
+        new Audio('/click.wav').play();
+    });
+}
+});
 
 
 </script>

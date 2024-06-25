@@ -9,7 +9,7 @@
 @tailwind utilities;
 
 button{
-    @apply bg-[#d6dcef] rounded-full h-12 w-12 text-2xl shadow-md flex items-center justify-center hover:scale-90 transition-all;
+    @apply bg-[#d6dcef] rounded-full h-12 w-12 text-2xl shadow-md flex items-center justify-center hover:scale-90 transition-all focus:scale-90 focus:outline-none ;
 }
 
 body{
