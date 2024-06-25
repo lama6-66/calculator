@@ -71,7 +71,7 @@ let allButtons= document.getElementsByTagName('button');
 
 for(let i=0;i<allButtons.length;i++){
     allButtons[i].addEventListener('click',() => {
-        new Audio('/click.wav').play();
+        new Audio('/click.mp3').play();
     });
 }
 });
