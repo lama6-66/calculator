@@ -8,6 +8,14 @@ function Equation( value :string){
 
 function space(){
     equation=equation.substring(0, equation.length-1);
+    if(equation.charAt(equation.length - 1)==' * '){
+        equation=equation.substring(0, equation.length-3);
+    }else{
+        equation=equation.substring(0, equation.length-1);
+    }
+
+
+
 }
 
 function clear(){
@@ -19,17 +27,15 @@ function solve(){
 
 }
 
-function exponent(){
 
-}
 
 
 </script>
 
 
 
-<div  class="bg-white  rounded-3xl grid grid-cols-4 gap-2 p-14 pt-15 font-normal shadow-2xl">
-<div class="bg-slate-500 text-white rounded-full col-span-4 h-12 w-30 flex items-center px-5 mb-5 font-bold">
+<div  class="bg-white rounded-3xl grid grid-cols-4 gap-2 p-14 pt-15 font-normal shadow-2xl max-w-[20rem] ">
+<div class="bg-slate-500 text-white rounded-x1 col-span-4 min-h-12 w-30 flex items-center px-5 mb-5 font-bold break-all">
 {equation}
 </div>
 
